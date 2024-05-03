@@ -1,5 +1,3 @@
-import { renderListWithTemplate } from "./utils.mjs";
-
 export default class ProductDetail {
     constructor(productId, dataSource) {
         this.productId = productId;

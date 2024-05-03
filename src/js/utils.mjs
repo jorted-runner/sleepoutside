@@ -49,3 +49,10 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   
   parentElement.insertAdjacentHTML(position, strings.join(''));
 }
+
+export function getParams(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const product = urlParams.get(param);
+  return product;
+}

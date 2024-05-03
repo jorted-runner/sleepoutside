@@ -19,7 +19,7 @@ export function setLocalStorage(key, newData) {
     try {
       dataArray = JSON.parse(existingData);
     } catch (error) {
-      console.error("Error parsing existing data:", error);
+      console.error('Error parsing existing data:', error);
       // Handle parsing error, e.g., by resetting existing data
       dataArray = [];
     }

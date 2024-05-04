@@ -9,11 +9,11 @@ export default class ProductDetail {
     async init() {
       this.product = await this.dataSource.findProductById(this.productId);
       this.renderProductDetails(this.product);
-      document.getElementById('addToCart').addEventListener('click', this.addToCart.bind(this.product));
+      document.getElementById('addToCart').addEventListener('click', this.addToCart.bind(this));
         
     }
-    addToCart(product) {
-      setLocalStorage('so-cart', product);
+    addToCart() {
+      setLocalStorage('so-cart', this.product);
     }
     renderProductDetails(product) {
       document.querySelector('main').innerHTML = `<section class='product-detail'>

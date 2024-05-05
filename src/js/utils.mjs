@@ -63,3 +63,9 @@ export function getParams(param) {
   const product = urlParams.get(param);
   return product;
 }
+
+export function discountPercentage(final, suggested) {
+  const discountAmount = suggested - final;
+  const discount = (discountAmount / suggested) * 100;
+  return discount;
+}

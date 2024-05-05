@@ -1,4 +1,4 @@
-import { setLocalStorage } from './utils.mjs';
+import { setLocalStorage, discountPercentage } from './utils.mjs';
 
 export default class ProductDetail {
     constructor(productId, dataSource) {
@@ -16,7 +16,12 @@ export default class ProductDetail {
       setLocalStorage('so-cart', this.product);
     }
     renderProductDetails(product) {
-      document.querySelector('main').innerHTML = `<section class='product-detail'>
+      let discountContent = '';
+      if (product.FinalPrice < product.SuggestedRetailPrice) {
+          const discountPercent = discountPercentage(product.FinalPrice, product.SuggestedRetailPrice);
+          discountContent = `<p class='discount'>${discountPercent.toFixed(0)}% OFF!</p>`;
+      }
+      const content = `<section class='product-detail'>
       <h3>${product.Brand.Name}</h3>
 
       <h2 class='divider'>${product.Name}</h2>
@@ -28,7 +33,7 @@ export default class ProductDetail {
       />
 
       <p class='product-card__price'>$${product.FinalPrice}</p>
-
+      ${discountContent}
       <p class='product__color'>${product.Colors[0].ColorName}</p>
 
       <p class='product__description'>
@@ -38,7 +43,8 @@ export default class ProductDetail {
       <div class='product-detail__add'>
         <button id='addToCart' data-id='${product.Id}'>Add to Cart</button>
       </div>
-    </section>`;
+    </section>`
+      document.querySelector('main').innerHTML = content;
   }
 }
 

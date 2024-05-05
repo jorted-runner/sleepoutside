@@ -1,4 +1,4 @@
-import { renderListWithTemplate } from './utils.mjs';
+import { renderListWithTemplate, discountPercentage } from './utils.mjs';
 
 function productCardTemplate(product) {
   if (product.Image.naturalWidth === 0) {
@@ -21,12 +21,6 @@ function productCardTemplate(product) {
           </li>`;
       return content;
   }
-}
-
-function discountPercentage(final, suggested) {
-  const discountAmount = suggested - final;
-  const discount = (discountAmount / suggested) * 100;
-  return discount;
 }
 
 export default class ProductListing {

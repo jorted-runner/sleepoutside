@@ -165,7 +165,10 @@ button {
 .product-detail img {
   width: 100%;
 }
-
+.discount {
+  color: red;
+  font-weight: bolder;
+}
 /* Start cart list card styles */
 .cart-card {
   display: grid;

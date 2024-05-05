@@ -16,13 +16,18 @@ export function setLocalStorage(key, newData) {
 
   // If there is existing data, parse it from JSON
   if (existingData) {
-    try {
-      dataArray = JSON.parse(existingData);
-    } catch (error) {
-      console.error('Error parsing existing data:', error);
-      // Handle parsing error, e.g., by resetting existing data
-      dataArray = [];
-    }
+      try {
+          dataArray = JSON.parse(existingData);
+
+          // If existingData is an object, convert it to an array
+          if (!Array.isArray(dataArray)) {
+              dataArray = [dataArray];
+          }
+      } catch (error) {
+          console.error('Error parsing existing data:', error);
+          // Handle parsing error, e.g., by resetting existing data
+          dataArray = [];
+      }
   }
 
   // Append the new data to the existing data array
@@ -31,6 +36,8 @@ export function setLocalStorage(key, newData) {
   // Set the updated data array back into local storage
   localStorage.setItem(key, JSON.stringify(dataArray));
 }
+
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener('touchend', (event) => {

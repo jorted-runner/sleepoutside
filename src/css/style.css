@@ -205,6 +205,10 @@ button {
   grid-column: 3;
 }
 
+.cart-total-amount {
+  text-decoration: line-through 2px;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -217,6 +221,10 @@ button {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+}
+
+.hidden {
+  display: none;
 }
 
 footer {

@@ -1,4 +1,4 @@
-import { getLocalStorage,  setSubscript } from './utils.mjs';
+import { getLocalStorage,  setSubscript, setLocalStorage, removeItemLocalStorage } from './utils.mjs';
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
@@ -7,7 +7,26 @@ function renderCartContents() {
     document.querySelector('.product-list').innerHTML = htmlItems.join('');
     showCartTotal(cartItems);
     setSubscript();
+    const remove_buttons = document.querySelectorAll('.remove_button');
+    remove_buttons.forEach(button => {
+      button.addEventListener('click', function() {
+        console.log('clicked');
+        // Extract the ID of the item associated with the remove button
+        const id = button.querySelector('p').textContent;
+    
+        // Remove the item from the cart array in local storage
+        removeItemLocalStorage('so-cart', id);
+        
+        // Remove the item's HTML element from the DOM
+        button.parentElement.remove();
+    
+        // Recalculate and display the cart total
+        renderCartContents();
+      });
+    });
   }
+  
+  
 }
 
 function showCartTotal(cart) {
@@ -23,6 +42,7 @@ function showCartTotal(cart) {
 }
 
 function cartItemTemplate(item) {
+  const color = item.Colors && item.Colors.length > 0 ? item.Colors[0].ColorName : '';
   const newItem = `
   <li class='cart-card divider'>
     <a href='#' class='cart-card__image'>
@@ -34,11 +54,11 @@ function cartItemTemplate(item) {
     <a href='#'>
       <h2 class='card__name'>${item.Name}</h2>
     </a>
-    <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
+    <p class='cart-card__color'>${color}</p>
     <p class='cart-card__quantity'>qty: 1</p>
     <p class='cart-card__price'>$${item.FinalPrice}</p>
+    <span class='remove_button'>X<p class='hidden'>${item.Id}</p></span>
   </li>`;
-
   return newItem;
 }
 

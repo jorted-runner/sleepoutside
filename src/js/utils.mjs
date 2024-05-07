@@ -69,3 +69,17 @@ export function discountPercentage(final, suggested) {
   const discount = (discountAmount / suggested) * 100;
   return discount;
 }
+
+export function setSubscript() {
+  const cartItems = getLocalStorage('so-cart');
+  if (cartItems != null && Array.isArray(cartItems)) {
+    const backpack = document.querySelector('.cart');
+    const numItems = cartItems.length;
+    const subElement = document.createElement('sub');
+    subElement.classList.add('subscript');
+    subElement.textContent = numItems; // Set the subscript text
+    
+    // Append the <sub> element as a child to the target element (backpack or any other target)
+    backpack.appendChild(subElement);
+  }
+}

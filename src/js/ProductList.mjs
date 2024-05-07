@@ -1,4 +1,4 @@
-import { renderListWithTemplate, discountPercentage } from './utils.mjs';
+import { renderListWithTemplate, discountPercentage, setSubscript } from './utils.mjs';
 
 function productCardTemplate(product) {
   if (product.Image.naturalWidth === 0) {
@@ -33,6 +33,7 @@ export default class ProductListing {
     async init() {
         const list = await this.dataSource.getData();
         this.renderList(list)
+        setSubscript();
     }
 
     renderList(list) {

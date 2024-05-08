@@ -1,4 +1,4 @@
-import { setLocalStorage, discountPercentage } from './utils.mjs';
+import { setLocalStorage, discountPercentage, setSubscript } from './utils.mjs';
 
 export default class ProductDetail {
     constructor(productId, dataSource) {
@@ -10,10 +10,11 @@ export default class ProductDetail {
       this.product = await this.dataSource.findProductById(this.productId);
       this.renderProductDetails(this.product);
       document.getElementById('addToCart').addEventListener('click', this.addToCart.bind(this));
-        
+      setSubscript();
     }
     addToCart() {
       setLocalStorage('so-cart', this.product);
+      setSubscript();
     }
     renderProductDetails(product) {
       let discountContent = '';

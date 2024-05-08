@@ -51,7 +51,21 @@ export function removeItemLocalStorage(key, id) {
   }
 }
 
+//convert the imported file to JSON
+export function convertToJson(res) {
+  if (res.ok) {
+      return res.json();
+  } else {
+      throw new Error('Bad Response');
+  }
+}
 
+//Get Data file based on the given path
+export function  getData(path) {
+    return fetch(path)
+      .then(convertToJson)
+      .then((data) => data);
+}
 
 // set a listener for both touchend and click
 export function setClick(selector, callback) {

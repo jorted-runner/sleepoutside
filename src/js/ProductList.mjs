@@ -32,7 +32,16 @@ export default class ProductListing {
 
     async init() {
         const list = await this.dataSource.getData();
-        this.renderList(list)
+        const filteredProducts = list.filter(this.filterList);
+        this.renderList(filteredProducts)
+    }
+
+    filterList(listitem) {
+        const includeTents = ['880RR','985RF','985PR','344YJ'];
+        if (includeTents.includes(listitem.Id)) {
+            return listitem;
+        }
+      
         setSubscript();
     }
 

@@ -96,6 +96,18 @@ button {
 }
 /* End utility classes */
 
+/* Start Alert classes*/
+.alert-list {
+  margin: 10px 0 10px 0;
+}
+
+.alert-list p {
+  padding: 10px;
+  margin: 0px;
+  font-weight: bold;
+}
+/* End Alert classes */
+
 /* Cart icon styles */
 .cart {
   padding-top: 1em;

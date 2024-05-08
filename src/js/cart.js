@@ -1,4 +1,4 @@
-import { getLocalStorage,  setSubscript, setLocalStorage, removeItemLocalStorage } from './utils.mjs';
+import { getLocalStorage,  setSubscript, removeItemLocalStorage } from './utils.mjs';
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
@@ -10,7 +10,7 @@ function renderCartContents() {
     const remove_buttons = document.querySelectorAll('.remove_button');
     remove_buttons.forEach(button => {
       button.addEventListener('click', function() {
-        console.log('clicked');
+        
         // Extract the ID of the item associated with the remove button
         const id = button.querySelector('p').textContent;
     

@@ -3,7 +3,7 @@ import { getLocalStorage,  setSubscript, removeItemLocalStorage } from './utils.
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
   if (cartItems != null) {
-    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    const htmlItems = cartItems.map(item => cartItemTemplate(item));
     document.querySelector('.product-list').innerHTML = htmlItems.join('');
     showCartTotal(cartItems);
     setSubscript();
@@ -42,12 +42,13 @@ function showCartTotal(cart) {
 }
 
 function cartItemTemplate(item) {
+  console.log(item);
   const color = item.Colors && item.Colors.length > 0 ? item.Colors[0].ColorName : '';
   const newItem = `
   <li class='cart-card divider'>
     <a href='#' class='cart-card__image'>
       <img
-        src='${item.Image}'
+        src='${item.Images.PrimaryMedium}'
         alt='${item.Name}'
       />
     </a>

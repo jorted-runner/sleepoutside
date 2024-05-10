@@ -1,3 +1,4 @@
+
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -144,7 +145,20 @@ button {
 }
 .products {
   padding: 0.5em;
+  width: 75%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
+.products a {
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+figcaption {
+  text-align: center;
+}
+
 .product-list {
   display: flex;
   flex-flow: row wrap;
@@ -156,6 +170,13 @@ button {
   text-decoration: none;
   color: var(--dark-grey);
 }
+/* Home page product Icons */
+.productIcon {
+  width: 100%;
+  min-width: 125px;
+  height: auto;
+}
+
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;

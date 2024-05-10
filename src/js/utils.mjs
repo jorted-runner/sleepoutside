@@ -76,14 +76,19 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener('click', callback);
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position = 'afterbegin', clear = 'false') {
-  const strings = list.map(templateFn);
-
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = 'false') {
+  const htmlStrings = list.map(templateFn);
   if (clear == 'true') {
     parentElement.innerHTML = '';
   }
-  
-  parentElement.insertAdjacentHTML(position, strings.join(''));
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+export function renderWithTemplate(templateFn, parentElement, data, callback, position = 'afterbegin') {
+  parentElement.insertAdjacentHTML(position, templateFn);
+  if (callback) {
+    callback(data);
+  }
 }
 
 export function getParams(param) {
@@ -115,4 +120,20 @@ export function setSubscript() {
     // Append the <sub> element as a child to the target element (backpack or any other target)
     backpack.appendChild(subElement);
   }
+}
+
+export async function loadHeaderFooter() {
+  const headerTemplate = await loadTemplate('../public/partials/header.html');
+  const header = document.querySelector('#main-header');
+  const footerTemplate = await loadTemplate('../public/partials/footer.html');
+  const footer = document.querySelector('#main-footer');
+
+  renderWithTemplate(headerTemplate, header);
+  renderWithTemplate(footerTemplate, footer);
+}
+
+export async function loadTemplate(path) {
+  const html = await fetch(path);
+  const template = await html.text();
+  return template;
 }

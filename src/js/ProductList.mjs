@@ -6,10 +6,15 @@ function productCardTemplate(product) {
         const discountPercent = discountPercentage(product.FinalPrice, product.SuggestedRetailPrice);
         discountContent = `<p class='discount'>${discountPercent.toFixed(0)}% OFF!</p>`;
     }
+    console.log(product);
     const content = 
         `<li class='product-card'>
             <a href='../product_pages/?product=${product.Id}'>
-                <img src='${product.Images.PrimaryMedium}' alt='Image of ${product.Name}'/>
+                <picture>
+                    <source media="(max-width: 600px)" srcset="${product.Images.PrimaryMedium}">
+                    <source media="(min-width: 601px) and (max-width: 1100px)" srcset="${product.Images.PrimaryLarge}">
+                    <img src="${product.Images.PrimaryExtraLarge}" alt="Image of ${product.Name}">
+                </picture>
                 <h3 class='card__brand'>${product.Brand.Name}</h3>
                 <h2 class='card__name'>${product.Name}</h2>
                 <p class='product-card__price'>$${product.FinalPrice}</p>
@@ -30,7 +35,7 @@ export default class ProductListing {
         const list = await this.dataSource.getData(this.category);
         const filteredProducts = list.filter(this.filterList);
         this.renderList(filteredProducts)
-        document.querySelector(".title").innerHTML = toTitleCase(this.category);
+        document.querySelector('.title').innerHTML = toTitleCase(this.category);
     }
 
     filterList(listitem) {

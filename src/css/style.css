@@ -143,18 +143,27 @@ button {
   max-width: 600px;
   margin: auto;
 }
-.products {
+.product-icons {
   padding: 0.5em;
-  width: 75%;
+  width: 100%;
   margin: auto;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
-.products a {
+
+.product-icons a {
+  width: 20%;
   text-decoration: none;
   color: var(--dark-grey);
 }
+
+@media only screen and (max-width: 600px) {
+  .product-icons a {
+    width: 40%;
+  }
+}
+
 figcaption {
   text-align: center;
 }
@@ -165,6 +174,13 @@ figcaption {
   justify-content: space-between;
   list-style-type: none;
   padding: 0;
+}
+@media only screen and (max-width: 550px) {
+  .product-list {
+      flex-direction: column;
+      margin: 0 auto;
+      align-items: center;
+  }
 }
 .product-list a {
   text-decoration: none;
@@ -229,7 +245,7 @@ figcaption {
 .cart-card p {
   margin-top: 0;
 }
-.cart-card .card__name {
+.cart-card .cart__name {
   grid-row: 1;
   grid-column: 2;
 }

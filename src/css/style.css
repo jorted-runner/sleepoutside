@@ -1,3 +1,4 @@
+
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -142,9 +143,31 @@ button {
   max-width: 600px;
   margin: auto;
 }
-.products {
+.product-icons {
   padding: 0.5em;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
+
+.product-icons a {
+  width: 20%;
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
+@media only screen and (max-width: 600px) {
+  .product-icons a {
+    width: 40%;
+  }
+}
+
+figcaption {
+  text-align: center;
+}
+
 .product-list {
   display: flex;
   flex-flow: row wrap;
@@ -152,10 +175,24 @@ button {
   list-style-type: none;
   padding: 0;
 }
+@media only screen and (max-width: 550px) {
+  .product-list {
+      flex-direction: column;
+      margin: 0 auto;
+      align-items: center;
+  }
+}
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
 }
+/* Home page product Icons */
+.productIcon {
+  width: 100%;
+  min-width: 125px;
+  height: auto;
+}
+
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
@@ -208,7 +245,7 @@ button {
 .cart-card p {
   margin-top: 0;
 }
-.cart-card .card__name {
+.cart-card .cart__name {
   grid-row: 1;
   grid-column: 2;
 }

@@ -116,3 +116,9 @@ export function setSubscript() {
     backpack.appendChild(subElement);
   }
 }
+
+export function toTitleCase(str) {
+  return str.toLowerCase().replace(/\b\w/g, function(char) {
+    return char.toUpperCase();
+  });
+}

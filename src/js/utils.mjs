@@ -122,6 +122,7 @@ export function setSubscript() {
   }
 }
 
+
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("../partials/header.html");
   const headerElement = document.querySelector("header");
@@ -137,3 +138,10 @@ export async function loadTemplate(path) {
   const template = await html.text();
   return template;
 }
+
+export function toTitleCase(str) {
+  return str.toLowerCase().replace(/\b\w/g, function(char) {
+    return char.toUpperCase();
+  });
+}
+

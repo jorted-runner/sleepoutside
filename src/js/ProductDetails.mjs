@@ -28,11 +28,11 @@ export default class ProductDetail {
 
       <h2 class='divider'>${product.Name}</h2>
 
-      <img
-        class='divider'
-        src='${product.Images.PrimaryLarge}'
-        alt='${product.Name}'
-      />
+      <picture>
+          <source media="(max-width: 600px)" srcset="${product.Images.PrimaryMedium}">
+          <source media="(min-width: 601px) and (max-width: 1100px)" srcset="${product.Images.PrimaryLarge}">
+          <img src="${product.Images.PrimaryExtraLarge}" alt="Image of ${product.Name}">
+      </picture>
 
       <p class='product-card__price'>$${product.FinalPrice}</p>
       ${discountContent}

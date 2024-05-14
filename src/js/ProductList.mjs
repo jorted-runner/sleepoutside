@@ -1,4 +1,4 @@
-import { renderListWithTemplate, discountPercentage, setSubscript } from './utils.mjs';
+import { renderListWithTemplate, discountPercentage, setSubscript, toTitleCase } from './utils.mjs';
 
 function productCardTemplate(product) {
     let discountContent = '';
@@ -8,8 +8,12 @@ function productCardTemplate(product) {
     }
     const content = 
         `<li class='product-card'>
-            <a href='/product_pages/index.html?product=${product.Id}'>
-                <img src='${product.Images.PrimaryMedium}' alt='Image of ${product.Name}'/>
+            <a href='../product_pages/?product=${product.Id}'>
+                <picture>
+                    <source media="(max-width: 600px)" srcset="${product.Images.PrimaryMedium}">
+                    <source media="(min-width: 601px) and (max-width: 1100px)" srcset="${product.Images.PrimaryLarge}">
+                    <img src="${product.Images.PrimaryExtraLarge}" alt="Image of ${product.Name}">
+                </picture>
                 <h3 class='card__brand'>${product.Brand.Name}</h3>
                 <h2 class='card__name'>${product.Name}</h2>
                 <p class='product-card__price'>$${product.FinalPrice}</p>
@@ -17,7 +21,7 @@ function productCardTemplate(product) {
             </a>
         </li>`;
     return content;
-  }
+}
 
 export default class ProductListing {
     constructor(category, dataSource, listElement) {
@@ -30,7 +34,7 @@ export default class ProductListing {
         const list = await this.dataSource.getData(this.category);
         const filteredProducts = list.filter(this.filterList);
         this.renderList(filteredProducts)
-        document.querySelector('.title').innerHTML = `Top Products: ${this.category}`
+        document.querySelector('.title').innerHTML = toTitleCase(this.category);
     }
 
     filterList(listitem) {

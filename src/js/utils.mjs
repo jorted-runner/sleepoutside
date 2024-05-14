@@ -76,14 +76,19 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener('click', callback);
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position = 'afterbegin', clear = 'false') {
-  const strings = list.map(templateFn);
-
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = 'false') {
+  const htmlStrings = list.map(templateFn);
   if (clear == 'true') {
     parentElement.innerHTML = '';
   }
-  
-  parentElement.insertAdjacentHTML(position, strings.join(''));
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+export function renderWithTemplate(templateFn, parentElement, data, callback, position = 'afterbegin') {
+  parentElement.insertAdjacentHTML(position, templateFn);
+  if (callback) {
+    callback(data);
+  }
 }
 
 export function getParams(param) {
@@ -117,8 +122,26 @@ export function setSubscript() {
   }
 }
 
+
+export async function loadHeaderFooter() {
+  const headerTemplate = await loadTemplate("../partials/header.html");
+  const headerElement = document.querySelector("header");
+  const footerTemplate = await loadTemplate("../partials/footer.html");
+  const footerElement = document.querySelector("footer");
+
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
+}
+
+export async function loadTemplate(path) {
+  const html = await fetch(path);
+  const template = await html.text();
+  return template;
+}
+
 export function toTitleCase(str) {
   return str.toLowerCase().replace(/\b\w/g, function(char) {
     return char.toUpperCase();
   });
 }
+

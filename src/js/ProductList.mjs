@@ -6,7 +6,6 @@ function productCardTemplate(product) {
         const discountPercent = discountPercentage(product.FinalPrice, product.SuggestedRetailPrice);
         discountContent = `<p class='discount'>${discountPercent.toFixed(0)}% OFF!</p>`;
     }
-    console.log(product);
     const content = 
         `<li class='product-card'>
             <a href='../product_pages/?product=${product.Id}'>
@@ -48,6 +47,6 @@ export default class ProductListing {
     }
 
     renderList(list) {
-        renderListWithTemplate(productCardTemplate, this.listElement, list)
+        renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
 }

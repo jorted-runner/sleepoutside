@@ -269,6 +269,22 @@ figcaption {
   text-decoration: line-through 2px;
 }
 
+#product_categories {
+  margin: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.product_category {
+  max-width: 10rem;
+  text-align: center;
+}
+
+.product_category a {
+  text-decoration: none;
+  color: black;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

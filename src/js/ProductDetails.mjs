@@ -13,10 +13,35 @@ export default class ProductDetail {
       document.getElementById('addToCart').addEventListener('click', this.addToCart.bind(this));
       setSubscript();
     }
+
     addToCart() {
-      setLocalStorage('so-cart', this.product);
-      setSubscript();
+      if (localStorage.getItem('so-cart')) {
+        let cart = JSON.parse(localStorage.getItem('so-cart'));
+        for (let i = 0; i < Object.keys(cart).length; i++) {
+          if (cart[i].Id == this.productId) {
+            let newProduct = cart[i];
+            newProduct.Quantity += 1;
+            cart.splice(cart[i], 1, newProduct);
+            localStorage.removeItem('so-cart');
+            for (let j = 0; j < cart.length; j++) {
+              setLocalStorage('so-cart', cart[j]);
+            }
+            setSubscript();
+            return
+          }
+        }
+        this.product['Quantity'] = 1;
+        setLocalStorage('so-cart', this.product);
+        setSubscript();
+      }
+      else {
+        this.product['Quantity'] = 1;
+        setLocalStorage('so-cart', this.product);
+        setSubscript();
+      }
+        
     }
+      
     renderProductDetails(product) {
       let discountContent = '';
       if (product.FinalPrice < product.SuggestedRetailPrice) {

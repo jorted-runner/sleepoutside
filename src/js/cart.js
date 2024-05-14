@@ -29,8 +29,8 @@ function showCartTotal(cart) {
   var suggestedTotal = 0;
   var finalTotal = 0;
   cart.forEach(item => {
-    suggestedTotal += item.SuggestedRetailPrice;
-    finalTotal += item.FinalPrice;
+    suggestedTotal += item.SuggestedRetailPrice * item.Quantity;
+    finalTotal += item.FinalPrice * item.Quantity;
   });
   document.querySelector('.cart-total-amount').innerHTML = `<strong>Total</strong>: $${suggestedTotal.toFixed(2)}`;
   document.querySelector('.total-discount').innerHTML = `<strong>Total</strong>: $${finalTotal.toFixed(2)} <p class='discount'>Saved: $${(suggestedTotal - finalTotal).toFixed(2)}</p>`;
@@ -51,8 +51,8 @@ function cartItemTemplate(item) {
       <h2 class='cart__name'>${item.Name}</h2>
     </a>
     <p class='cart-card__color'>${color}</p>
-    <p class='cart-card__quantity'>qty: 1</p>
-    <p class='cart-card__price'>$${item.FinalPrice}</p>
+    <p class='cart-card__quantity'>qty: ${item.Quantity}</p>
+    <p class='cart-card__price'>$${item.FinalPrice * item.Quantity}</p>
     <span class='remove_button'>X<p class='hidden'>${item.Id}</p></span>
   </li>`;
   return newItem;

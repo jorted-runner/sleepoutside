@@ -3,4 +3,3 @@ import { setSubscript } from './utils.mjs';
 
 const alerts = new Alert();
 alerts.init();
-setSubscript();

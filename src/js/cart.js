@@ -7,7 +7,6 @@ function renderCartContents() {
     const htmlItems = cartItems.map(item => cartItemTemplate(item));
     document.querySelector('.product-list').innerHTML = htmlItems.join('');
     showCartTotal(cartItems);
-    setSubscript();
     const remove_buttons = document.querySelectorAll('.remove_button');
     remove_buttons.forEach(button => {
       button.addEventListener('click', function() {
@@ -18,7 +17,9 @@ function renderCartContents() {
         // Remove the item's HTML element from the DOM
         button.parentElement.remove();
         // Recalculate and display the cart total
-        renderCartContents();
+        const cartItems = getLocalStorage('so-cart');
+        showCartTotal(cartItems);
+        setSubscript();
       });
     });
   }

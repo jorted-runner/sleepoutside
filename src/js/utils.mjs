@@ -131,6 +131,7 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
+  setSubscript();
 }
 
 export async function loadTemplate(path) {

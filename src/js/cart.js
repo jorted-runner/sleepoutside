@@ -17,8 +17,8 @@ function renderCartContents() {
         // Remove the item's HTML element from the DOM
         button.parentElement.remove();
         // Recalculate and display the cart total
-        const cartItems = getLocalStorage('so-cart');
-        showCartTotal(cartItems);
+        const newCartItems = getLocalStorage('so-cart');
+        showCartTotal(newCartItems);
         setSubscript();
       });
     });

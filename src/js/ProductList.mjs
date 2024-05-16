@@ -1,4 +1,4 @@
-import { renderListWithTemplate, discountPercentage, setSubscript, toTitleCase } from './utils.mjs';
+import { renderListWithTemplate, discountPercentage, toTitleCase } from './utils.mjs';
 
 function productCardTemplate(product) {
     let discountContent = '';
@@ -32,18 +32,9 @@ export default class ProductListing {
 
     async init() {
         const list = await this.dataSource.getData(this.category);
-        const filteredProducts = list.filter(this.filterList);
-        this.renderList(filteredProducts)
-        document.querySelector('.title').innerHTML = toTitleCase(this.category);
-    }
-
-    filterList(listitem) {
-        const includeTents = ['880RR','985RF','985PR','344YJ'];
-        if (includeTents.includes(listitem.Id)) {
-            return listitem;
-        }
-      
-        setSubscript();
+        this.renderList(list);
+        const productTitle = document.querySelector('.title')
+        productTitle.textContent = productTitle.textContent + ': ' + toTitleCase(category.replace(/-/gi, ' '));
     }
 
     renderList(list) {

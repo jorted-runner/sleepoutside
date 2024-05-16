@@ -1,6 +1,7 @@
 import Alert from './Alert.mjs';
-import { setSubscript } from './utils.mjs';
+import {  loadHeaderFooter, setSubscript } from './utils.mjs';
+
+loadHeaderFooter();
 
 const alerts = new Alert();
 alerts.init();
-setSubscript();

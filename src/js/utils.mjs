@@ -124,13 +124,14 @@ export function setSubscript() {
 
 
 export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate("../partials/header.html");
-  const headerElement = document.querySelector("header");
-  const footerTemplate = await loadTemplate("../partials/footer.html");
-  const footerElement = document.querySelector("footer");
+  const headerTemplate = await loadTemplate('../partials/header.html');
+  const headerElement = document.querySelector('header');
+  const footerTemplate = await loadTemplate('../partials/footer.html');
+  const footerElement = document.querySelector('footer');
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
+  setSubscript();
 }
 
 export async function loadTemplate(path) {

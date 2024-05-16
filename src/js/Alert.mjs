@@ -1,4 +1,4 @@
-import {renderWithTemplate, getData, qs} from './utils.mjs';
+import {renderListWithTemplate, getData, qs} from './utils.mjs';
 
 export default class Alert{
     constructor(path = '../json/alerts.json') {
@@ -14,11 +14,11 @@ export default class Alert{
             const mainElement = qs('main');
             mainElement.prepend(alertSection);
 
-            renderWithTemplate(alertTemplate,alertSection,this.alertdata.Alerts);
+            renderListWithTemplate(alertTemplate,alertSection,this.alertdata.Alerts);
         }
     }
 }
 
 function alertTemplate(alert) {
-    return `<p style=' background-color: ${alert.background}; color:${alert.color};'>${alert.message}</p>`;
+    return `<p style=' background-color: ${alert.background}; color:${alert.color}; class='alert-detail'>${alert.message}</p>`;
 }

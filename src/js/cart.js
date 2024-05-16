@@ -1,7 +1,9 @@
 import { getLocalStorage,  setSubscript, removeItemLocalStorage, loadHeaderFooter } from './utils.mjs';
 
+loadHeaderFooter();
+
 function renderCartContents() {
-  loadHeaderFooter();
+  
   const cartItems = getLocalStorage('so-cart');
   if (cartItems != null) {
     const htmlItems = cartItems.map(item => cartItemTemplate(item));
@@ -19,6 +21,9 @@ function renderCartContents() {
         button.parentElement.remove();
         // Recalculate and display the cart total
         renderCartContents();
+        const cartItm = getLocalStorage('so-cart');
+        showCartTotal(cartItm);
+        setSubscript();
       });
     });
   }

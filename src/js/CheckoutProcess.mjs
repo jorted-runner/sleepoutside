@@ -1,4 +1,4 @@
-import {  formDataToJSON, getLocalStorage } from './utils.mjs';
+import {  formDataToJSON, getLocalStorage, alertCartMessage, toTitleCase } from './utils.mjs';
 import ExternalServices from "./ExternalServices.mjs";
 
 const externalService = new ExternalServices();
@@ -69,9 +69,27 @@ export default class CalculateOrder {
         try {
             const res = await externalService.checkout(form);
             console.log(res);
+            localStorage.removeItem('so-cart');
+            window.location.href = '../checkout/success.html';
           } catch (err) {
+            let message = '';
+            if (err.message && typeof err.message === 'object') {
+                const entries = Object.entries(err.message);
+                entries.forEach(([key, value], index) => {
+                  message += `${toTitleCase(key)}: ${toTitleCase(value)}`;
+                  if (index < entries.length - 1) {
+                    message += ' | ';
+                  }
+                });
+            } else {
+              message = err.message || 'An unexpected error occurred';
+            }
+          
+            alertCartMessage(message.trim());
             console.log(err);
           }
+          
+          
     }
 }
 

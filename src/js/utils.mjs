@@ -159,3 +159,19 @@ export function formDataToJSON(formElement) {
   return convertedJSON;
 }
 
+export function alertCartMessage(message, scroll = true) {
+  const newAlert = document.createElement('div');
+  newAlert.classList.add('alert');
+  newAlert.innerHTML = `<p>${message}</p><span class='closeAlert'>X</span>`;
+  newAlert.querySelector('.closeAlert').addEventListener('click', function() {
+    newAlert.remove();
+  });
+
+  const main = document.querySelector('main');
+  main.prepend(newAlert);
+
+  if (scroll) {
+    window.scrollTo(0, 0);
+  }
+}
+

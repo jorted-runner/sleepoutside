@@ -1,4 +1,4 @@
-import { setLocalStorage, discountPercentage, setSubscript, loadHeaderFooter, removeItemLocalStorage } from './utils.mjs';
+import { setLocalStorage, discountPercentage, setSubscript, loadHeaderFooter, removeItemLocalStorage, alertCartMessage} from './utils.mjs';
 
 export default class ProductDetail {
     constructor(productId, dataSource) {
@@ -38,6 +38,7 @@ export default class ProductDetail {
         setLocalStorage('so-cart', this.product);
         setSubscript();
       }
+      alertCartMessage(`${this.product.NameWithoutBrand} added to cart!`);
         
     }
       

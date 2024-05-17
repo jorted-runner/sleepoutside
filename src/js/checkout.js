@@ -8,5 +8,9 @@ order.init();
 
 document.forms['checkout'].addEventListener('submit', (event) => {
     event.preventDefault();
-    order.checkout();
+    const check_status = document.forms['checkout'].checkValidity();
+    document.forms['checkout'].reportValidity();
+    if (check_status) {
+        order.checkout();
+    }
 });

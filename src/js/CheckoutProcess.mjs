@@ -35,10 +35,12 @@ export default class CalculateOrder {
     }
 
     displayOrderTotals() {
-       document.querySelector('#orderTotals').innerHTML = `<p>Subtotal: $${this.itemTotal}</p>
-        <p>Shipping: $${this.shipping}</p>
-        <p>Tax: $${this.tax.toFixed(2)}</p>
-        <p>Order Total: $${this.orderTotal.toFixed(2)}</p>`;
+       document.querySelector('#orderTotals').innerHTML = 
+       `<div id='ordertotals'>
+            <p class='totals-label'>Subtotal:</p><p class='totals'> $${this.itemTotal}</p>
+            <p class='totals-label'>Shipping:</p><p class='totals'> $${this.shipping}</p>
+            <p class='totals-label'>Tax:</p><p class='totals'> $${this.tax.toFixed(2)}</p>
+            <p class='totals-label'>Order Total:</p><p class='totals'> $${this.orderTotal.toFixed(2)}</p>`;
     }
 
     packageItems(items) {
@@ -56,7 +58,7 @@ export default class CalculateOrder {
     }
     
     async checkout() {
-        const formElement = document.forms["checkout"];
+        const formElement = document.forms['checkout'];
         const form = formDataToJSON(formElement);
 
         form.orderDate = new Date();

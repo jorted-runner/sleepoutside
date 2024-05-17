@@ -108,11 +108,13 @@ export function setSubscript() {
   const cartItems = getLocalStorage('so-cart');
   if (cartItems != null && Array.isArray(cartItems)) {
     const backpack = document.querySelector('.cart');
-    if (backpack.querySelector('sub')) {
+    const subscript = backpack.querySelector('sub');
+    if (subscript != null) {
       backpack.querySelector('sub').remove();
     }
     
-    const numItems = cartItems.length;
+    const numItems =  cartItems.map((product) => product.Quantity).reduce((total,current) => total + current);
+
     const subElement = document.createElement('sub');
     subElement.classList.add('subscript');
     subElement.textContent = numItems; // Set the subscript text

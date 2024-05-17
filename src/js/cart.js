@@ -57,7 +57,7 @@ function cartItemTemplate(item) {
     </a>
     <p class='cart-card__color'>${color}</p>
     <p class='cart-card__quantity'>qty: ${item.Quantity}</p>
-    <p class='cart-card__price'>$${item.FinalPrice * item.Quantity}</p>
+    <p class='cart-card__price'>$${Math.round((item.FinalPrice * item.Quantity) * 100) / 100}</p>
     <span class='remove_button'>X<p class='hidden'>${item.Id}</p></span>
   </li>`;
   return newItem;

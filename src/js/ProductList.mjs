@@ -34,7 +34,7 @@ export default class ProductListing {
         const list = await this.dataSource.getData(this.category);
         this.renderList(list);
         const productTitle = document.querySelector('.title')
-        productTitle.textContent = productTitle.textContent + ': ' + toTitleCase(this.category.replace(/-/gi, ' '));
+        productTitle.textContent = productTitle.textContent + toTitleCase(this.category.replace(/-/gi, ' '));
     }
 
     renderList(list) {

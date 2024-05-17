@@ -295,7 +295,9 @@ figcaption {
   }
   .cart-card {
     font-size: inherit;
-    grid-template-columns: 150px auto 15%;
+    width: 90%;
+    grid-template-columns: 150px auto 100px;
+    padding: 10px;
   }
 }
 

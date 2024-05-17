@@ -56,7 +56,7 @@ export default class CalculateOrder {
     }
     
     async checkout() {
-        const formElement = document.forms["checkout"];
+        const formElement = document.forms['checkout'];
         const form = formDataToJSON(formElement);
 
         form.orderDate = new Date();
@@ -66,6 +66,8 @@ export default class CalculateOrder {
         form.items = this.packageItems(this.itemlist);
         try {
             const res = await externalService.checkout(form);
+            localStorage.removeItem('so-cart')
+            location.assign('/checkout/success.html');
             console.log(res);
           } catch (err) {
             console.log(err);

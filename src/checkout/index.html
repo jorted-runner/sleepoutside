@@ -59,9 +59,88 @@
     <main class='divider'>
       <section class='products'>
         <h2>Review & Place your Order</h2>
+        <div id='checkout-form'>
+          <form method='get' action='../checkout-complete.html'>
+            <fieldset>
+              <legend>Your Information</legend>
+              <label class='checkoutinfo'>First Name* <input type='text' name='fname' id='fname' required></label>
+              <label class='checkoutinfo'>Last Name* <input type='text' name='lname' id='lname' required></label>
+              <label class='checkoutinfo'>Street Address <input type='text' name='street' id='street' required></label>
+              <label class='checkoutinfo'>City <input type='text' name='city' id='city' required></label>
+              <label class='checkoutinfo'>State<select name="state" id="state" required>
+                <option value='Alaska'>Alaska</option>
+                <option value='Alabama'>Alabama</option>
+                <option value='Arkansas'>Arkansas</option>
+                <option value='Arizona'>Arizona</option>
+                <option value='California'>California</option>
+                <option value='Colorado'>Colorado</option>
+                <option value='Connecticut'>Connecticut</option>
+                <option value='District'>District of Columbia</option>
+                <option value='Delaware'>Delaware</option>
+                <option value='Florida'>Florida</option>
+                <option value='Georgia'> Georgia</option>
+                <option value='Guam'>Guam</option>
+                <option value='Hawaii'>Hawaii</option>
+                <option value='Iowa'>Iowa</option>
+                <option value='Idaho'>Idaho</option>
+                <option value='Illinois'>Illinois</option>
+                <option value='Indiana'>Indiana</option>
+                <option value='Kansas'>Kansas</option>
+                <option value='Kentucky'>Kentucky</option>
+                <option value='Louisiana'>Louisiana</option>
+                <option value='Massachusetts'>Massachusetts</option>
+                <option value='Maryland'>Maryland</option>
+                <option value='Maine'>Maine</option>
+                <option value='Michigan'>Michigan</option>
+                <option value='Minnesota'>Minnesota</option>
+                <option value='Missouri'>Missouri</option>
+                <option value='Mississippi'>Mississippi</option>
+                <option value='Montana'>Montana</option>
+                <option value='NorthCarolina'>North Carolina</option>
+                <option value='NorthDakota'>North Dakota</option>
+                <option value='Nebraska'>Nebraska</option>
+                <option value='NewHampshire'>New Hampshire </option>
+                <option value='NewJersey'>New Jersey </option>
+                <option value='NewMexico'>New Mexico</option>
+                <option value='Nevada'>Nevada</option>
+                <option value='NewYork'> New York</option>
+                <option value='Ohio'>Ohio</option>
+                <option value='Oklahoma'>Oklahoma </option>
+                <option value='Oregon'>Oregon</option>
+                <option value='Pennsylvania'>Pennsylvania </option>
+                <option value='PuertoRico'>Puerto Rico </option>
+                <option value='RhodeIsland'>Rhode Island </option>
+                <option value='SouthCarolina'>South Carolina </option>
+                <option value='SouthDakota'>South Dakota </option>
+                <option value='Tennessee'>Tennessee </option>
+                <option value='Texas'>Texas</option>
+                <option value='Utah'>Utah</option>
+                <option value='Virginia'>Virginia </option>
+                <option value='VirginIslands'>Virgin Islands </option>
+                <option value='Vermont'>Vermont </option>
+                <option value='Washington'>Washington </option>
+                <option value='Wisconsin'>Wisconsin </option>
+                <option value='WestVirginia'>West Virginia </option>
+                <option value='Wyoming'>Wyoming</option>
+              </select></label>
+              <label class='checkoutinfo'>Zip Code <input type='text' name='zipcode' id='zipcode' pattern='^\d{5}(?:[-\s]\d{4})?$' required>
+            </fieldset>
+      
+            <fieldset>
+              <legend>Payment Information</legend>
+              <label class='checkoutinfo'>Credit Card Number <input type='text' name='creditcardnum' id='creditcardnum' pattern='[0-9 \]{16}' required></label>
+              <label class='checkoutinfo'>Expiration Date <input type='date' name='expiredate' id='expiredate' required></label>
+              <label class='checkoutinfo'>Security Code<input type='text' name='security' id='security' pattern='[0-9]{3}' required></label>
+            </fieldset>
+      
+            <div id="OrderSummary">
+
+            </div>
+            <input type='submit' value='Checkout' class='submitBtn'>
+          </form>
+        </div>
       </section>
     </main>
-
     <footer>&copy;NOT a real business</footer>
   </body>
 </html>

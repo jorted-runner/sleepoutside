@@ -371,5 +371,5 @@ input:required {
 }
 
 label input:required:valid {
-  border-left: rgb(151, 184, 151) solid 6px; 
+  border-left: rgb(151, 184, 151) solid 6px;
 }

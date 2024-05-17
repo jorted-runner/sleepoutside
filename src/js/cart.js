@@ -9,7 +9,6 @@ function renderCartContents() {
     const htmlItems = cartItems.map(item => cartItemTemplate(item));
     document.querySelector('.product-list').innerHTML = htmlItems.join('');
     showCartTotal(cartItems);
-    setSubscript();
     const remove_buttons = document.querySelectorAll('.remove_button');
     remove_buttons.forEach(button => {
       button.addEventListener('click', function() {

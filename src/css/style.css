@@ -414,3 +414,17 @@ form input.submitBtn {
   text-align: right;
   padding: 0 0 0 20px;
 }
+
+.remove_button {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 5px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.remove_button:hover {
+  background-color: #e0e0e0;
+  color: #ff0000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

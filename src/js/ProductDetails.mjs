@@ -1,4 +1,4 @@
-import { setLocalStorage, discountPercentage, setSubscript, loadHeaderFooter } from './utils.mjs';
+import { setLocalStorage, discountPercentage, setSubscript, loadHeaderFooter, removeItemLocalStorage } from './utils.mjs';
 
 export default class ProductDetail {
     constructor(productId, dataSource) {
@@ -13,19 +13,18 @@ export default class ProductDetail {
       document.getElementById('addToCart').addEventListener('click', this.addToCart.bind(this));
       setSubscript();
     }
-
     addToCart() {
       if (localStorage.getItem('so-cart')) {
         let cart = JSON.parse(localStorage.getItem('so-cart'));
         for (let i = 0; i < Object.keys(cart).length; i++) {
+          console.log(cart[i], this.productId)
           if (cart[i].Id == this.productId) {
             let newProduct = cart[i];
             newProduct.Quantity += 1;
             cart.splice(cart[i], 1, newProduct);
-            localStorage.removeItem('so-cart');
-            for (let j = 0; j < cart.length; j++) {
-              setLocalStorage('so-cart', cart[j]);
-            }
+            removeItemLocalStorage('so-cart', this.productId);
+            setLocalStorage('so-cart', newProduct);
+
             setSubscript();
             return
           }

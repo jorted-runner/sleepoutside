@@ -61,7 +61,7 @@
 
         </div>
         <div id='checkout-form'>
-          <form method='get' action='../checkout-complete.html'>
+          <form name='checkout' method='get' action='../checkout-complete.html'>
             <fieldset>
               <legend>Your Information</legend>
               <label class='checkoutinfo'>First Name* <input type='text' name='fname' id='fname' required></label>
@@ -124,14 +124,14 @@
                 <option value='WestVirginia'>West Virginia </option>
                 <option value='Wyoming'>Wyoming</option>
               </select></label>
-              <label class='checkoutinfo'>Zip Code <input type='text' name='zipcode' id='zipcode' pattern='^\d{5}(?:[-\s]\d{4})?$' required>
+              <label class='checkoutinfo'>Zip Code <input type='text' name='zip' id='zipcode' required>
             </fieldset>
       
             <fieldset>
               <legend>Payment Information</legend>
-              <label class='checkoutinfo'>Credit Card Number <input type='text' name='creditcardnum' id='creditcardnum' pattern='[0-9 \]{16}' required></label>
-              <label class='checkoutinfo'>Expiration Date <input type='date' name='expiredate' id='expiredate' required></label>
-              <label class='checkoutinfo'>Security Code<input type='text' name='security' id='security' pattern='[0-9]{3}' required></label>
+              <label class='checkoutinfo'>Credit Card Number <input type='text' name='cardNumber' id='creditcardnum' required></label>
+              <label class='checkoutinfo'>Expiration Date <input type='date' name='expiration' id='expiredate' required></label>
+              <label class='checkoutinfo'>Security Code<input type='text' name='code' id='security' required></label>
             </fieldset>
       
             <div id="OrderSummary">

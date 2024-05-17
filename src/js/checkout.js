@@ -5,3 +5,8 @@ import CalculateOrder from './CheckoutProcess.mjs'
 
 const order = new CalculateOrder();
 order.init();
+
+document.forms['checkout'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    order.checkout();
+});

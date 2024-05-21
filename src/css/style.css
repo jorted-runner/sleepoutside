@@ -314,7 +314,7 @@ footer {
 #checkout-totals {
   border-radius: 10px;
   padding: 5px 20px 20px 20px;
-  background-color: #edd3bd;
+  background-color: #e6e2e2;
 }
 
 #checkout-form, #checkout-totals {
@@ -377,15 +377,25 @@ form label.checkoutinfo input, select {
 }
 
 form input.submitBtn {
-  border: none;
-  background-color: #f0a868;
+  border: 3px #fff solid;
+  background-color: #eec9a9;
   color: black;
   border-radius: 1rem;
   padding: .75rem 1.5rem;
   width: 96%;
   max-width: 20rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
+  cursor: pointer;
+}
+
+form input.submitBtn:hover {
+  border: 3px #f0a868 solid;
+}
+
+form input.submitBtn:active {
+  border: 3px #f0a868 solid;
+  background-color: #f0a868;
 }
 
 #checkout-form input:required {

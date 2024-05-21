@@ -1,4 +1,4 @@
-import { getLocalStorage,  setSubscript, removeItemLocalStorage, loadHeaderFooter } from './utils.mjs';
+import { getLocalStorage,  setSubscript, removeItemLocalStorage, loadHeaderFooter, updateLocalStorage } from './utils.mjs';
 
 loadHeaderFooter();
 
@@ -6,9 +6,35 @@ function renderCartContents() {
   
   const cartItems = getLocalStorage('so-cart');
   if (cartItems != null) {
-    const htmlItems = cartItems.map(item => cartItemTemplate(item));
+    const htmlItems = cartItems.map((item, index) => cartItemTemplate(item, index));
     document.querySelector('.product-list').innerHTML = htmlItems.join('');
     showCartTotal(cartItems);
+
+    const qtyInputs = document.querySelectorAll('.cart-card__quantityval');
+    qtyInputs.forEach(qtyInput => {
+      qtyInput.addEventListener('click', function() {
+
+        // Extract the index of the cart item
+        const parent = qtyInput.parentNode.parentNode;
+        const index = parseInt(parent.querySelector('.itmIndex').textContent);
+
+        //get the cart array and adjust the quantity
+        let cart = getLocalStorage('so-cart');
+        if (!parseInt(qtyInput.value) == 0) {
+          cart[index].Quantity = parseInt(qtyInput.value);
+        }
+        else {
+          cart.splice(index, 1);
+        }
+        
+        //push the new array out
+        updateLocalStorage('so-cart', cart);
+        renderCartContents();
+        showCartTotal(cart);
+        setSubscript();
+      });
+    });
+
     const remove_buttons = document.querySelectorAll('.remove_button');
     remove_buttons.forEach(button => {
       button.addEventListener('click', function() {
@@ -28,6 +54,7 @@ function renderCartContents() {
   }
 }
 
+
 function showCartTotal(cart) {
   document.querySelector('.cart-total').classList.remove('hidden');
   var suggestedTotal = 0;
@@ -40,7 +67,7 @@ function showCartTotal(cart) {
   document.querySelector('.total-discount').innerHTML = `<strong>Total</strong>: $${finalTotal.toFixed(2)} <p class='discount'>Saved: $${(suggestedTotal - finalTotal).toFixed(2)}</p>`;
 }
 
-function cartItemTemplate(item) {
+function cartItemTemplate(item, index) {
   const color = item.Colors && item.Colors.length > 0 ? item.Colors[0].ColorName : '';
   const newItem = `
   <li class='cart-card divider'>
@@ -55,9 +82,10 @@ function cartItemTemplate(item) {
       <h2 class='cart__name'>${item.Name}</h2>
     </a>
     <p class='cart-card__color'>${color}</p>
-    <p class='cart-card__quantity'>qty: ${item.Quantity}</p>
+    <label class='cart-card__quantity'>qty:<input type='number' name='itemQuantity' class='cart-card__quantityval' value='${item.Quantity}'></label>
     <p class='cart-card__price'>$${Math.round((item.FinalPrice * item.Quantity) * 100) / 100}</p>
     <span class='remove_button'>X<p class='hidden'>${item.Id}</p></span>
+    <p class='itmIndex' hidden>${index}</p>
   </li>`;
   return newItem;
 }

@@ -7,33 +7,39 @@ export function qs(selector, parent = document) {
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
-}
-// save data to local storage
-export function setLocalStorage(key, newData) {
+
   let existingData = localStorage.getItem(key);
   let dataArray = [];
   // If there is existing data, parse it from JSON
   if (existingData) {
       try {
           dataArray = JSON.parse(existingData);
-
-          // If existingData is an object, convert it to an array
-          if (!Array.isArray(dataArray)) {
-              dataArray = [dataArray];
-          }
       } catch (error) {
           console.error('Error parsing existing data:', error);
-          // Handle parsing error, e.g., by resetting existing data
           dataArray = [];
       }
   }
+  return dataArray;
+}
+
+
+// save new data to local storage
+export function setLocalStorage(key, newData) {
+  
+  //Get the local storage key
+  let dataArray = getLocalStorage(key);
 
   // Append the new data to the existing data array
   dataArray.push(newData);
 
   // Set the updated data array back into local storage
   localStorage.setItem(key, JSON.stringify(dataArray));
+}
+
+// Update local storage
+export function updateLocalStorage(key, updatedArray) {
+  // Set the updated data array back into local storage
+  localStorage.setItem(key, JSON.stringify(updatedArray));
 }
 
 export function removeItemLocalStorage(key, id) {

@@ -7,15 +7,15 @@ export default class CalculateOrder {
     constructor() {
         this.itemlist = [];
         this.itemTotal = 0;
-        this.shipping = 8;
-        this.tax = 0;
-        this.orderTotal = 0;
+        this.shipping;
+        this.tax;
+        this.orderTotal;
+        this.totalItems = 0;
     }
 
     init() {
         this.itemlist = getLocalStorage('so-cart');
         this.calculateItemSummary();
-        this.calculateOrdertotal();
         this.displayOrderTotals();
     }
 
@@ -23,29 +23,51 @@ export default class CalculateOrder {
         if (this.itemlist != null) {
             this.itemlist.forEach(item => {
                 this.itemTotal += item.FinalPrice * item.Quantity;
-                this.shipping += 2 * item.Quantity;
+                this.totalItems += item.Quantity;
             });
         }
     }
 
-    calculateOrdertotal() {
-        this.tax = this.itemTotal * 0.06;
-        this.orderTotal = this.itemTotal + this.tax + this.shipping;
-        
+    calculateOrdertotal(totalValues = false) {
+        //Verify the zipcode is valid before totals are displayed. if not valid remove totals.
+        if (totalValues) {
+            this.shipping = 8;
+            this.shipping += 2 * this.totalItems;
+            this.tax = this.itemTotal * 0.06;
+            this.orderTotal = this.itemTotal + this.tax + this.shipping;
+        }
+        else {
+            this.shipping = null;
+            this.tax = null;
+            this.orderTotal = null; 
+        }       
+        this.displayOrderTotals();
     }
 
     displayOrderTotals() {
-       document.querySelector('#orderTotals').innerHTML = 
-       `<div id='ordertotals'>
+        let orderShip = '';
+        let orderTax = ''
+        let orderTotal = '';
+        
+        if (this.shipping != null && this.tax != null && this.orderTotal != null)
+        {
+            orderShip = this.shipping.toFixed(2);
+            orderTax = this.tax.toFixed(2);
+            orderTotal = this.orderTotal.toFixed(2);            
+        }
+
+        
+        document.querySelector('#orderTotals').innerHTML = 
+         `<div id='ordertotals'>
             <p class='totals-label'>Subtotal:</p><p class='totals'> $${this.itemTotal}</p>
-            <p class='totals-label'>Shipping:</p><p class='totals'> $${this.shipping}</p>
-            <p class='totals-label'>Tax:</p><p class='totals'> $${this.tax.toFixed(2)}</p>
-            <p class='totals-label'>Order Total:</p><p class='totals'> $${this.orderTotal.toFixed(2)}</p>`;
+            <p class='totals-label'>Shipping:</p><p class='totals'> $${orderShip}</p>
+            <p class='totals-label'>Tax:</p><p class='totals'> $${orderTax}</p>
+            <p class='totals-label'>Order Total:</p><p class='totals'> $${orderTotal}</p>`;
     }
 
-    packageItems(items) {
+    packageItems() {
         let largeBox = []
-        getLocalStorage('so-cart').map(item => {
+        this.itemlist.map(item => {
             let pack = {
                 'id': item.Id,
                 'name': item.Name,
@@ -62,10 +84,11 @@ export default class CalculateOrder {
         const form = formDataToJSON(formElement);
 
         form.orderDate = new Date();
-        form.orderTotal = this.orderTotal;
-        form.tax = this.tax;
+        form.orderTotal = this.orderTotal.toFixed(2);
+        form.tax = this.tax.toFixed(2);
         form.shipping = this.shipping;
         form.items = this.packageItems(this.itemlist);
+        
         try {
             const res = await externalService.checkout(form);
             console.log(res);

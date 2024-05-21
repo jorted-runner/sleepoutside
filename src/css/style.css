@@ -260,6 +260,13 @@ figcaption {
   grid-column: 3;
 }
 
+.cart-card__quantityval {
+  width: 60px;
+  padding: 5px;
+  margin-left: 10px;
+  font-size: 1em;
+}
+
 .cart-card__price {
   grid-row: 2;
   grid-column: 3;

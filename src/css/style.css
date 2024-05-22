@@ -419,12 +419,12 @@ a {
 } 
 
 #ordertotals {
-  display:grid;
+  display: grid;
   grid-template-columns: auto auto;
-  width:fit-content;
+  width: fit-content;
 }
 
-#ordertotals p{
+#ordertotals p {
   margin: 5px;
 }
 
@@ -452,25 +452,20 @@ a {
 }
 
 .success-container {
-  height: 50vw;
   width: 100%;
-  padding-top: 10%;
+  padding: 10% ;
   margin: auto;
 }
 
 #thankyou {
   text-align: center;
   vertical-align: middle;
-  height: min(80%, 300px);
-  width: max(80%, 500px);
-  background-color: var(--tertiary-color);
-  border-radius: 10px;
-  margin: auto;
+  width: fit-content;
+  margin: auto auto;
 }
 
-#thankyou p{
+#thankyou p {
   font-size: 1.3em;
-  padding-top: min(40%, 130px);
   font-weight: bold;
 }
 
@@ -487,7 +482,6 @@ a {
   font-weight: bold;
   padding: 5px 15px 0 10px;
   margin: auto auto;
-  height: 35px;
 }
 
 .alertnotice.hide-banner {

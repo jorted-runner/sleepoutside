@@ -1,4 +1,4 @@
-import {  formDataToJSON, getLocalStorage } from './utils.mjs';
+import {  formDataToJSON, getLocalStorage, updateLocalStorage, alertMessage} from './utils.mjs';
 import ExternalServices from "./ExternalServices.mjs";
 
 const externalService = new ExternalServices();
@@ -91,10 +91,11 @@ export default class CalculateOrder {
         
         try {
             const res = await externalService.checkout(form);
-            console.log(res);
-          } catch (err) {
-            console.log(err);
-          }
+            updateLocalStorage('so-cart',[])
+            location.assign('/checkout/success.html');
+        } catch (err) {
+            alertMessage ('There was an error processing your order',true);
+        }
     }
 }
 

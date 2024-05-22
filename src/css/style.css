@@ -383,7 +383,7 @@ form label.checkoutinfo input, select {
   transform: translate(-50%, -50%);
 }
 
-form input.submitBtn {
+.submitBtn {
   border: 3px #fff solid;
   background-color: #eec9a9;
   color: black;
@@ -394,16 +394,21 @@ form input.submitBtn {
   font-size: 1.3rem;
   font-weight: bold;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
-form input.submitBtn:hover {
+.submitBtn:hover {
   border: 3px #f0a868 solid;
 }
 
-form input.submitBtn:active {
+.submitBtn:active {
   border: 3px #f0a868 solid;
   background-color: #f0a868;
 }
+
+a {
+  text-decoration: none;
+} 
 
 #checkout-form input:required {
   border-left: #ae2e2e solid 6px;
@@ -414,12 +419,12 @@ form input.submitBtn:active {
 } 
 
 #ordertotals {
-  display:grid;
+  display: grid;
   grid-template-columns: auto auto;
-  width:fit-content;
+  width: fit-content;
 }
 
-#ordertotals p{
+#ordertotals p {
   margin: 5px;
 }
 
@@ -444,4 +449,51 @@ form input.submitBtn:active {
   background-color: #e0e0e0;
   color: #ff0000;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.success-container {
+  width: 100%;
+  padding: 10% ;
+  margin: auto;
+}
+
+#thankyou {
+  text-align: center;
+  vertical-align: middle;
+  width: fit-content;
+  margin: auto auto;
+}
+
+#thankyou p {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.alertnotice {
+  display: block;
+  width: 100%;
+}
+
+.alert {
+  width: 100%;
+  background-color: var(--primary-color);
+  border: #8d4f18 1px solid;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 5px 15px 5px 10px;
+  margin: auto auto;
+}
+
+.alertnotice.hide-banner {
+  display: none;
+}
+
+.bannerclose {
+  float: right;
+  background-color: transparent;
+  color: black;
+  border: none;
+  border-style: none;
+  cursor: pointer;
+  font-size: 1.4rem;
 }

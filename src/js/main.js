@@ -1,5 +1,5 @@
 import Alert from './Alert.mjs';
-import {  loadHeaderFooter, setSubscript } from './utils.mjs';
+import {  loadHeaderFooter } from './utils.mjs';
 
 loadHeaderFooter();
 

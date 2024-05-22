@@ -1,4 +1,4 @@
-import { setLocalStorage, discountPercentage, setSubscript, loadHeaderFooter, removeItemLocalStorage } from './utils.mjs';
+import { setLocalStorage, discountPercentage, setSubscript, loadHeaderFooter, removeItemLocalStorage, alertMessage} from './utils.mjs';
 
 export default class ProductDetail {
     constructor(productId, dataSource) {
@@ -26,16 +26,19 @@ export default class ProductDetail {
             setLocalStorage('so-cart', newProduct);
 
             setSubscript();
+            alertMessage(`${this.product.Name} was added to your cart.`)  
             return
           }
         }
         this.product['Quantity'] = 1;
         setLocalStorage('so-cart', this.product);
+        alertMessage(`${this.product.Name} was added to your cart.`)  
         setSubscript();
       }
       else {
         this.product['Quantity'] = 1;
         setLocalStorage('so-cart', this.product);
+        alertMessage(`${this.product.Name} was added to your cart.`)  
         setSubscript();
       }
         
@@ -67,10 +70,10 @@ export default class ProductDetail {
       </p>
 
       <div class='product-detail__add'>
-        <button id='addToCart' data-id='${product.Id}'>Add to Cart</button>
+        <button id='addToCart' class='submitBtn' data-id='${product.Id}'>Add to Cart</button>
       </div>
     </section>`
-      document.querySelector('main').innerHTML = content;
+      document.querySelector('main').innerHTML += content;
   }
 }
 

@@ -165,3 +165,35 @@ export function formDataToJSON(formElement) {
   return convertedJSON;
 }
 
+export function alertMessage(message, scroll = true) {
+
+    const alertDiv = document.createElement('div');
+    alertDiv.classList.add('alertnotice')
+
+    const alertp = document.createElement('p');
+    alertp.classList.add('alert')
+    alertp.textContent = message;
+
+    const alertbutton = document.createElement('span');
+    alertbutton.classList.add('bannerclose');
+    alertbutton.textContent = 'X';
+
+    alertDiv.appendChild(alertp).appendChild(alertbutton);
+
+    if(!document.querySelector('#alertnotices'))
+    {
+      const alertSection = document.createElement('div');
+      alertSection.id = 'alertnotices';
+      document.querySelector('main').prepend(alertSection);
+    }
+
+    const alertsElement = document.querySelector('#alertnotices');
+    alertsElement.prepend(alertDiv);
+
+    alertbutton.addEventListener('click', () => {
+      alertDiv.remove();
+    });
+
+    if(scroll)
+      window.scrollTo(0,0);
+}

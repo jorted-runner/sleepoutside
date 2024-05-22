@@ -167,8 +167,8 @@ export function formDataToJSON(formElement) {
 
 export function alertMessage(message, scroll = true) {
 
-    const alertSection = document.createElement('div');
-    alertSection.classList.add('alertnotice')
+    const alertDiv = document.createElement('div');
+    alertDiv.classList.add('alertnotice')
 
     const alertp = document.createElement('p');
     alertp.classList.add('alert')
@@ -178,15 +178,20 @@ export function alertMessage(message, scroll = true) {
     alertbutton.classList.add('bannerclose');
     alertbutton.textContent = 'X';
 
-    alertSection.appendChild(alertp).appendChild(alertbutton);
+    alertDiv.appendChild(alertp).appendChild(alertbutton);
+
+    if(!document.querySelector('#alertnotices'))
+    {
+      const alertSection = document.createElement('div');
+      alertSection.id = 'alertnotices';
+      document.querySelector('main').prepend(alertSection);
+    }
 
     const alertsElement = document.querySelector('#alertnotices');
-    alertsElement.prepend(alertSection);
+    alertsElement.prepend(alertDiv);
 
     alertbutton.addEventListener('click', () => {
-      if (!alertSection.classList.contains('hide-banner')) {
-          alertSection.classList.toggle('hide-banner');
-      }
+      alertDiv.remove();
     });
 
     if(scroll)

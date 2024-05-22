@@ -445,3 +445,18 @@ form input.submitBtn:active {
   color: #ff0000;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+.alert {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  background-color: rgb(248, 109, 109);
+}
+.closeAlert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.closeAlert:hover {
+  background-color: rgb(243, 151, 151);
+  color: #ff0000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

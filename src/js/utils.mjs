@@ -111,7 +111,7 @@ export function discountPercentage(final, suggested) {
 
 export function setSubscript() {
   const cartItems = getLocalStorage('so-cart');
-  if (cartItems != null && Array.isArray(cartItems)) {
+  if (cartItems != null && Array.isArray(cartItems) && cartItems.length > 0) {
     const backpack = document.querySelector('.cart');
     const subscript = backpack.querySelector('sub');
     if (subscript != null) {

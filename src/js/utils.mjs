@@ -113,19 +113,21 @@ export function setSubscript() {
   const cartItems = getLocalStorage('so-cart');
   if (cartItems != null && Array.isArray(cartItems) && cartItems.length > 0) {
     const backpack = document.querySelector('.cart');
-    const subscript = backpack.querySelector('sub');
-    if (subscript != null) {
-      backpack.querySelector('sub').remove();
-    }
+    if (backpack != null) {
+      const subscript = backpack.querySelector('sub');
+      if (subscript != null) {
+        backpack.querySelector('sub').remove();
+      }
     
-    const numItems =  cartItems.map((product) => product.Quantity).reduce((total,current) => total + current);
+      const numItems =  cartItems.map((product) => product.Quantity).reduce((total,current) => total + current);
 
-    const subElement = document.createElement('sub');
-    subElement.classList.add('subscript');
-    subElement.textContent = numItems; // Set the subscript text
+      const subElement = document.createElement('sub');
+      subElement.classList.add('subscript');
+      subElement.textContent = numItems; // Set the subscript text
     
-    // Append the <sub> element as a child to the target element (backpack or any other target)
-    backpack.appendChild(subElement);
+      // Append the <sub> element as a child to the target element (backpack or any other target)
+      backpack.appendChild(subElement);
+    }
   }
 }
 

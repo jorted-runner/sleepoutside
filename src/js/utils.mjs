@@ -7,33 +7,39 @@ export function qs(selector, parent = document) {
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
-}
-// save data to local storage
-export function setLocalStorage(key, newData) {
+
   let existingData = localStorage.getItem(key);
   let dataArray = [];
   // If there is existing data, parse it from JSON
   if (existingData) {
       try {
           dataArray = JSON.parse(existingData);
-
-          // If existingData is an object, convert it to an array
-          if (!Array.isArray(dataArray)) {
-              dataArray = [dataArray];
-          }
       } catch (error) {
           console.error('Error parsing existing data:', error);
-          // Handle parsing error, e.g., by resetting existing data
           dataArray = [];
       }
   }
+  return dataArray;
+}
+
+
+// save new data to local storage
+export function setLocalStorage(key, newData) {
+  
+  //Get the local storage key
+  let dataArray = getLocalStorage(key);
 
   // Append the new data to the existing data array
   dataArray.push(newData);
 
   // Set the updated data array back into local storage
   localStorage.setItem(key, JSON.stringify(dataArray));
+}
+
+// Update local storage
+export function updateLocalStorage(key, updatedArray) {
+  // Set the updated data array back into local storage
+  localStorage.setItem(key, JSON.stringify(updatedArray));
 }
 
 export function removeItemLocalStorage(key, id) {
@@ -108,11 +114,13 @@ export function setSubscript() {
   const cartItems = getLocalStorage('so-cart');
   if (cartItems != null && Array.isArray(cartItems)) {
     const backpack = document.querySelector('.cart');
-    if (backpack.querySelector('sub')) {
+    const subscript = backpack.querySelector('sub');
+    if (subscript != null) {
       backpack.querySelector('sub').remove();
     }
     
-    const numItems = cartItems.length;
+    const numItems =  cartItems.map((product) => product.Quantity).reduce((total,current) => total + current);
+
     const subElement = document.createElement('sub');
     subElement.classList.add('subscript');
     subElement.textContent = numItems; // Set the subscript text
@@ -157,3 +165,35 @@ export function formDataToJSON(formElement) {
   return convertedJSON;
 }
 
+export function alertMessage(message, scroll = true) {
+
+    const alertDiv = document.createElement('div');
+    alertDiv.classList.add('alertnotice')
+
+    const alertp = document.createElement('p');
+    alertp.classList.add('alert')
+    alertp.textContent = message;
+
+    const alertbutton = document.createElement('span');
+    alertbutton.classList.add('bannerclose');
+    alertbutton.textContent = 'X';
+
+    alertDiv.appendChild(alertp).appendChild(alertbutton);
+
+    if(!document.querySelector('#alertnotices'))
+    {
+      const alertSection = document.createElement('div');
+      alertSection.id = 'alertnotices';
+      document.querySelector('main').prepend(alertSection);
+    }
+
+    const alertsElement = document.querySelector('#alertnotices');
+    alertsElement.prepend(alertDiv);
+
+    alertbutton.addEventListener('click', () => {
+      alertDiv.remove();
+    });
+
+    if(scroll)
+      window.scrollTo(0,0);
+}

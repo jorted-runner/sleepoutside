@@ -8,18 +8,19 @@
     <script src="../js/product-listing.js" type="module"></script>
   </head>
   <body>
-    <header class="divider"></header>
+    <header class="divider">
+    </header>
     <main class="divider">
-        <h2>Top Products: <span class="title"></span></h2>
-        <label for="sort-options">Sort By:</label>
-        <select id="sort-options">
-            <option value="az">A-Z</option>
-            <option value="za">Z-A</option>
-            <option value="price-low-high">Price Low to High</option>
-            <option value="price-high-low">Price High to Low</option>
-        </select>
-        <ul class="product-list">
-        </ul>
+      <ul id="breadcrumb"></ul>
+      <h2>Top Products: <span class="title"></span></h2>
+      <label for="sort-options">Sort By:</label>
+      <select id="sort-options">
+          <option value="az">A-Z</option>
+          <option value="za">Z-A</option>
+          <option value="price-low-high">Price Low to High</option>
+          <option value="price-high-low">Price High to Low</option>
+      </select>
+      <ul class="product-list"></ul>
     </main>
     <footer>&copy;NOT a real business</footer>
   </body>

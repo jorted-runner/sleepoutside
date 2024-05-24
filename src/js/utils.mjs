@@ -15,7 +15,6 @@ export function getLocalStorage(key) {
       try {
           dataArray = JSON.parse(existingData);
       } catch (error) {
-          console.error('Error parsing existing data:', error);
           dataArray = [];
       }
   }
@@ -82,12 +81,12 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener('click', callback);
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = 'false') {
+export function renderListWithTemplate(templateFn, parentElement, list, position = 'afterbegin', clear = 'false') {
   const htmlStrings = list.map(templateFn);
   if (clear == 'true') {
     parentElement.innerHTML = '';
   }
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
 
 export function renderWithTemplate(templateFn, parentElement, data, callback, position = 'afterbegin') {
@@ -196,4 +195,17 @@ export function alertMessage(message, scroll = true) {
 
     if(scroll)
       window.scrollTo(0,0);
+}
+
+export function setBreadcrumb(links) {
+
+    const breadcrumbList = document.querySelector('#breadcrumb');
+
+    links.forEach(link => {
+      const newBreadcrumb = document.createElement('li');
+      newBreadcrumb.classList.add('breadcrumb')
+      newBreadcrumb.innerHTML = link;
+      breadcrumbList.appendChild(newBreadcrumb);
+    });
+
 }

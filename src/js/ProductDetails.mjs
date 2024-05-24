@@ -1,4 +1,4 @@
-import { setLocalStorage, discountPercentage, setSubscript, loadHeaderFooter, removeItemLocalStorage, alertMessage} from './utils.mjs';
+import { setLocalStorage, discountPercentage, setSubscript, loadHeaderFooter, removeItemLocalStorage, alertMessage, setBreadcrumb, toTitleCase} from './utils.mjs';
 
 export default class ProductDetail {
     constructor(productId, dataSource) {
@@ -12,6 +12,11 @@ export default class ProductDetail {
       this.renderProductDetails(this.product);
       document.getElementById('addToCart').addEventListener('click', this.addToCart.bind(this));
       setSubscript();
+
+      let categoryTitle = toTitleCase(this.product.Category.replace(/-/gi, ' '))
+      let breadcrumbList = [`<a href='../index.html'>Home</a>`,`<a href='../product-listing/index.html?category=${this.product.Category}'>${categoryTitle}</a>`];
+      setBreadcrumb(breadcrumbList);
+
     }
     addToCart() {
       if (localStorage.getItem('so-cart')) {

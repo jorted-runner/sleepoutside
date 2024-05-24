@@ -1,4 +1,4 @@
-import { renderListWithTemplate, discountPercentage, toTitleCase } from './utils.mjs';
+import { renderListWithTemplate, discountPercentage, toTitleCase, setBreadcrumb } from './utils.mjs';
 
 function productCardTemplate(product) {
     let discountContent = '';
@@ -34,7 +34,11 @@ export default class ProductListing {
         const list = await this.dataSource.getData(this.category);
         this.renderList(list);
         const productTitle = document.querySelector('.title')
-        productTitle.textContent = productTitle.textContent + toTitleCase(this.category.replace(/-/gi, ' '));
+        let categoryTitle = toTitleCase(this.category.replace(/-/gi, ' '))
+        productTitle.textContent = productTitle.textContent + categoryTitle ;
+
+        let breadcrumbList = [`<a href='../index.html'>Home</a>`,`<a href='../product-listing/index.html?category=${this.category}'>${categoryTitle}</a>`, ('(' + list.length.toString() + ' items)')];
+        setBreadcrumb(breadcrumbList);
     }
 
     renderList(list) {

@@ -1,8 +1,9 @@
 const baseURL = import.meta.env.VITE_SERVER_URL
 
 function convertToJson(res) {
+  let jsonResponse = res.json();
   if (res.ok) {
-    return res.json();
+    return jsonResponse;
   } else {
     throw {name: 'serviceError', message: res};
   }

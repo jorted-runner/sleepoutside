@@ -14,6 +14,9 @@ export default class ProductDetail {
       setSubscript();
     }
     addToCart() {
+      let backpackIcon = document.querySelector('.cart');
+      backpackIcon.setAttribute('id', 'packAnimation');
+      setTimeout(this.removeId, 3000);
       if (localStorage.getItem('so-cart')) {
         let cart = JSON.parse(localStorage.getItem('so-cart'));
         for (let i = 0; i < Object.keys(cart).length; i++) {
@@ -41,7 +44,10 @@ export default class ProductDetail {
         alertMessage(`${this.product.Name} was added to your cart.`)  
         setSubscript();
       }
-        
+    }
+
+    removeId() {
+      document.querySelector('.cart').removeAttribute('id');
     }
       
     renderProductDetails(product) {

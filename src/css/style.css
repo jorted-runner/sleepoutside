@@ -373,3 +373,14 @@ input:required {
 label input:required:valid {
   border-left: rgb(151, 184, 151) solid 6px;
 }
+
+#packAnimation {
+  animation: addedToCart 3s;
+}
+
+@keyframes addedToCart {
+  100% {
+    transform: rotate(360deg);
+    color: red;
+  }
+}
